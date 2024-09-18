@@ -1,8 +1,8 @@
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 // Connection URL
 const url = 'mongodb://admin:123123@localhost:27017/real_estate_db?authSource=admin';
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(url);
 
 // Database Name
 const dbName = 'real_estate_db';

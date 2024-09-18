@@ -83,6 +83,16 @@ async function localDown() {
   }
 }
 
+async function populateApp() {
+  try {
+    console.log('Populating app...');
+    await execa('node', ['dockertool/seed.js'], { stdio: 'inherit' });
+    console.log('App populated with sample data.');
+  } catch (error) {
+    console.error('Error executing seed script:', error);
+  }
+}
+
 program
   .version('1.0.0')
   .description('Docker CLI Tool');
@@ -131,5 +141,10 @@ program
   .command('clean-vol')
   .description('Clean unused Docker volumes')
   .action(cleanVolume);
+
+program
+  .command("populate app")
+  .description("Populate the application with sample data")
+  .action(populateApp)
 
 program.parse(process.argv);
